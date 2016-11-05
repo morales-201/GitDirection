@@ -1,18 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="com.comp.jpb.gitdirection.MainActivity">
+    android:orientation="vertical"
+    android:gravity="center"
+    android:paddingBottom="100dp"
+    android:paddingTop="50dp">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:onClick="showCompass"
+        android:src="@drawable/compass"/>
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="10dp"
+        android:layout_weight="1" />
+    <Button
+        android:id="@+id/compassButton"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
-</RelativeLayout>
+        android:layout_width="@dimen/buttonwidth"
+        android:text="Compass"
+        android:onClick="showCompass"
+        android:textSize="25sp"
+        />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="10dp"
+        android:layout_weight="1" />
+    <Button
+        android:id="@+id/connectButton"
+        android:layout_height="wrap_content"
+        android:layout_width="@dimen/buttonwidth"
+        android:text="Connect"
+        android:onClick="showConnect"
+        android:textSize="25sp"
+        />
+    <View
+        android:layout_width="0dp"
+        android:layout_height="10dp"
+        android:layout_weight="1" />
+    <Button
+        android:id="@+id/settingsButton"
+        android:layout_height="wrap_content"
+        android:layout_width="@dimen/buttonwidth"
+        android:text="Settings"
+        android:onClick="showSettings"
+        android:textSize="25sp"
+        />
+    <View
+        android:layout_width="0dp"
+        android:layout_height="10dp"
+        android:layout_weight="1" />
+    <Button
+        android:id="@+id/instuctionsButton"
+        android:layout_height="wrap_content"
+        android:layout_width="@dimen/buttonwidth"
+        android:text="Instructions"
+        android:onClick="showInstructions"
+        android:textSize="25sp"
+        />
+</LinearLayout>
