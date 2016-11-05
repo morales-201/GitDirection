@@ -9,8 +9,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import com.comp.jpb.gitdirection.R;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationListener;
+import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.location.FusedLocationProviderApi;
@@ -33,16 +34,20 @@ import android.Manifest.permission;
 
 public class MainActivity
         extends AppCompatActivity
-        implements ConnectionCallbacks, OnConnectionFailedListener
+        implements ConnectionCallbacks, OnConnectionFailedListener, LocationListener
 {
 
     private GoogleApiClient ApiClient;
+    private LocationRequest locReq;
+    private boolean updatingLocation = false;
 
     private Location lastLocation;
 
-    private String longitude;
-    private String latitude;
     private TextView coords;
+
+
+    //time in ms for compass to update
+    private int updateTime = 3000;
 
     private static final String[] LOCATION_PERMS={
             android.Manifest.permission.ACCESS_FINE_LOCATION
@@ -59,8 +64,15 @@ public class MainActivity
 
 
         getLocationPermission();
-
         buildGoogleApiClient();
+        createLocationRequest();
+    }
+
+    private void createLocationRequest(){
+        locReq = new LocationRequest();
+        locReq.setInterval(updateTime);
+        locReq.setFastestInterval(1000);
+        locReq.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
     }
 
     private void getLocationPermission(){
@@ -77,6 +89,32 @@ public class MainActivity
                 .build();
     }
 
+    protected void startLocationUpdates() {
+        if (checkSelfPermission(android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            LocationServices.FusedLocationApi.requestLocationUpdates(ApiClient, locReq, this);
+            updatingLocation = true;
+        }
+    }
+
+    protected void stopLocationUpdates() {
+        LocationServices.FusedLocationApi.removeLocationUpdates(ApiClient, this);
+        updatingLocation = false;
+    }
+
+    @Override
+    public void onLocationChanged(Location location){
+        lastLocation = location;
+
+        if (lastLocation != null) {
+            coords.setText(String.format("Latitude: %f \n Longitude: %f",
+                    lastLocation.getLatitude(), lastLocation.getLongitude()));
+        }
+        else {
+            coords.setText("Location not Gotten :(");
+        }
+    }
+
+
     @Override
     protected void onStop(){
         super.onStop();
@@ -84,12 +122,33 @@ public class MainActivity
         if (ApiClient.isConnected()){
             ApiClient.disconnect();
         }
+
+        if(updatingLocation){
+            stopLocationUpdates();
+        }
     }
 
     @Override
     protected void onStart(){
         super.onStart();
         ApiClient.connect();
+        if (ApiClient.isConnected() && !updatingLocation){
+            startLocationUpdates();
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        stopLocationUpdates();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (ApiClient.isConnected() && !updatingLocation){
+            startLocationUpdates();
+        }
     }
 
     @Override
@@ -119,6 +178,8 @@ public class MainActivity
 
         setContentView(R.layout.compass_page);
 
+        startLocationUpdates();
+
         coords = (TextView) findViewById(R.id.compass_text);
         if (lastLocation != null){
             coords.setText(String.format("Latitude: %f \n Longitude: %f",
@@ -128,8 +189,9 @@ public class MainActivity
         }
     }
 
-    public void showMainPage(View view){
+    public void showMainPageAndStopLocationUpdates(View view){
         setContentView(R.layout.activity_main);
+        stopLocationUpdates();
     }
 
 }
