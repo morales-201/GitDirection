@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
     android:orientation="vertical"
     android:gravity="center"
     android:paddingBottom="100dp"
@@ -44,6 +45,8 @@
     <Button
         android:id="@+id/destinationBackButton"
         android:layout_height="wrap_content"
+        android:background="@color/colorAccent"
+        android:textColor="@color/colorTextIcons"
         android:layout_width="@dimen/buttonwidth"
         android:text="Back"
         android:onClick="showMainPageFromDestination"

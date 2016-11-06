@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
     android:orientation="vertical"
     android:gravity="center"
     android:paddingBottom="100dp"
@@ -14,18 +15,45 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:onClick="showCompass"
-        android:src="@drawable/compass"/>
+        android:src="@drawable/compass"
+        />
 
     <View
         android:layout_width="0dp"
         android:layout_height="10dp"
-        android:layout_weight="1" />
-
+        android:layout_weight="1"
+        />
     <Switch
-        android:id="@+id/settingsswitch"
+        android:id="@+id/showlocwitch"
         android:layout_width="@dimen/buttonwidth"
         android:layout_height="wrap_content"
-        android:text="Play with the Switch"
+        android:text="Show me my location "
+        />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="10dp"
+        android:layout_weight="1"
+        />
+
+    <Switch
+        android:id="@+id/colorswitch"
+        android:layout_width="@dimen/buttonwidth"
+        android:layout_height="wrap_content"
+        android:text="Background color get lighter when I get closer"
+        />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="10dp"
+        android:layout_weight="1"
+        />
+
+    <Switch
+        android:id="@+id/distswitch"
+        android:layout_width="@dimen/buttonwidth"
+        android:layout_height="wrap_content"
+        android:text="Show distance from destination"
         />
 
     <View
@@ -37,11 +65,27 @@
         android:id="@+id/spinner"
         android:layout_height="wrap_content"
         android:layout_width="@dimen/buttonwidth"
-        android:background="@color/colorPrimaryDark"
+        android:background="@color/colorPrimary"
+        android:dropDownWidth="50dp"
+        android:spinnerMode="dropdown"
         android:entries="@array/seconds"
         android:prompt="@string/spinprompt"
         />
+    <View
+        android:layout_width="0dp"
+        android:layout_height="10dp"
+        android:layout_weight="2" />
 
+    <Button
+        android:id="@+id/destinationBackButton"
+        android:layout_height="wrap_content"
+        android:layout_width="@dimen/buttonwidth"
+        android:background="@color/colorAccent"
+        android:textColor="@color/colorTextIcons"
+        android:text="Back"
+        android:onClick="showMainPageFromSettings"
+        android:textSize="25sp"
+        />
 
 
 
