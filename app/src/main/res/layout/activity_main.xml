@@ -36,11 +36,11 @@
         android:layout_height="10dp"
         android:layout_weight="1" />
     <Button
-        android:id="@+id/connectButton"
+        android:id="@+id/destinationButton"
         android:layout_height="wrap_content"
         android:layout_width="@dimen/buttonwidth"
         android:text="Connect"
-        android:onClick="showConnect"
+        android:onClick="showDestination"
         android:textSize="25sp"
         />
     <View
