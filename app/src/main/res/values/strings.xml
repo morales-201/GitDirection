@@ -1,4 +1,5 @@
 <resources>
-    <string name="app_name">GitDirection</string>
+    <string name="app_name"> </string>
+    <string name="spinprompt">Choose how often(seconds) location updates</string>
 
 </resources>

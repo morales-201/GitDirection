@@ -22,7 +22,7 @@
         android:layout_width="@dimen/buttonwidth"
         android:background="@color/colorPrimaryDark"
         android:entries="@array/seconds"
-        android:prompt="Choose how often(seconds) location updates" />
+        android:prompt="@string/spinprompt" />
 
 
     <Switch
