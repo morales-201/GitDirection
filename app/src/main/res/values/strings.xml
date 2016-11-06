@@ -1,5 +1,12 @@
 <resources>
     <string name="app_name"> </string>
     <string name="spinprompt">Choose how often(seconds) location updates</string>
-
+    <string-array name="seconds">
+        <item>1</item>
+        <item>3</item>
+        <item>10</item>
+        <item>20</item>
+        <item>40</item>
+        <item>90</item>
+    </string-array>
 </resources>

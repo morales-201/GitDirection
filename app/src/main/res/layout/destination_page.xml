@@ -26,17 +26,35 @@
         android:layout_width="@dimen/buttonwidth"
         android:layout_height="wrap_content"
         android:inputType="numberDecimal"
-        android:digits="10"
-        android:hint="Longitude" />
-    <View
-        android:layout_width="0dp"
-        android:layout_height="10dp"
-        android:layout_weight="1" />
+        android:hint="Longitude"
+        />
+
     <EditText
         android:id="@+id/latitude"
         android:layout_width="@dimen/buttonwidth"
         android:layout_height="wrap_content"
         android:inputType="numberDecimal"
-        android:digits="10"
         android:hint="Latitude" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="10dp"
+        android:layout_weight="2" />
+
+    <Button
+        android:id="@+id/destinationBackButton"
+        android:layout_height="wrap_content"
+        android:layout_width="@dimen/buttonwidth"
+        android:text="Back"
+        android:onClick="showMainPageFromDestination"
+        android:textSize="25sp"
+        />
+    <Switch
+        android:id="@+id/mySwitch"
+        android:layout_width="@dimen/buttonwidth"
+        android:layout_height="wrap_content"
+        android:text="Play with the Switch"
+        />
+
+
 </LinearLayout>

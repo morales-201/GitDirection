@@ -7,6 +7,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -44,6 +45,9 @@ public class MainActivity
     private Location lastLocation;
 
     private TextView coords;
+
+    float userLat = 9001;
+    float userLong = 9001;
 
 
     //time in ms for compass to update
@@ -187,6 +191,46 @@ public class MainActivity
         else{
             coords.setText("Location not Gotten :(");
         }
+    }
+
+    public void showDestination(View view) {
+        setContentView(R.layout.destination_page);
+
+        if (userLat < 9001){
+            EditText latitude = (EditText)findViewById(R.id.latitude);
+            EditText longitude = (EditText)findViewById(R.id.longitude);
+
+            latitude.setText(Float.toString(userLat));
+            longitude.setText(Float.toString(userLong));
+        }
+
+    }
+
+    public void showSettings(View view) {
+        setContentView(R.layout.settings_page);
+    }
+
+    public void showInstructions(View view) {
+
+    }
+
+    public void showMainPage(View view){
+        setContentView(R.layout.activity_main);
+    }
+
+    public void showMainPageFromDestination(View view){
+        EditText latitude = (EditText)findViewById(R.id.latitude);
+        EditText longitude = (EditText)findViewById(R.id.longitude);
+
+        String userLatString = latitude.getText().toString();
+        String userLongString = latitude.getText().toString();
+
+        if (!userLatString.equals("") && !userLongString.equals("")) {
+            userLat = Float.parseFloat(userLatString);
+            userLong = Float.parseFloat(userLongString);
+            setContentView(R.layout.activity_main);
+        }
+
     }
 
     public void showMainPageAndStopLocationUpdates(View view){

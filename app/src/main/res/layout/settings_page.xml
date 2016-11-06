@@ -10,26 +10,39 @@
     android:paddingBottom="100dp"
     android:paddingTop="50dp">
 
-
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:onClick="showCompass"
+        android:src="@drawable/compass"/>
 
     <View
         android:layout_width="0dp"
         android:layout_height="10dp"
         android:layout_weight="1" />
+
+    <Switch
+        android:id="@+id/settingsswitch"
+        android:layout_width="@dimen/buttonwidth"
+        android:layout_height="wrap_content"
+        android:text="Play with the Switch"
+        />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="10dp"
+        android:layout_weight="1"
+        />
     <Spinner
-        android:id="@+id/spinner1"
+        android:id="@+id/spinner"
         android:layout_height="wrap_content"
         android:layout_width="@dimen/buttonwidth"
         android:background="@color/colorPrimaryDark"
         android:entries="@array/seconds"
-        android:prompt="@string/spinprompt" />
+        android:prompt="@string/spinprompt"
+        />
 
 
-    <Switch
-        android:id="@+id/mySwitch"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/buttonwidth"
-        android:layout_marginTop="20dp"
-        android:text="Play with the Switch" />
+
 
 </LinearLayout>
