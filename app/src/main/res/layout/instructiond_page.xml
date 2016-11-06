@@ -7,14 +7,16 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDark"
     android:orientation="vertical"
-    android:gravity="center"
+    android:gravity="left"
+    android:paddingLeft="30dp"
     android:paddingBottom="100dp"
     android:paddingTop="50dp">
 
     <ImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:onClick="showCompass"
+        android:layout_gravity="center"
+        android:onClick="showCompassicon"
         android:src="@drawable/compass"/>
 
     <View
@@ -22,41 +24,30 @@
         android:layout_height="10dp"
         android:layout_weight="1" />
 
-    <EditText
-        android:id="@+id/longitude"
-        android:layout_width="@dimen/buttonwidth"
-        android:layout_height="wrap_content"
-        android:inputType="numberDecimal"
-        android:hint="Longitude"
-        />
 
-    <EditText
-        android:id="@+id/latitude"
-        android:layout_width="@dimen/buttonwidth"
+    <TextView
+        android:id="@+id/directionTextView"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:inputType="numberDecimal"
-        android:hint="Latitude" />
+        android:scrollHorizontally="true"
+        android:text="Hello how are you doing, I am doing medium, you see I havn't slept for a very very very very very very very very long time and humans are supossed to sleep. Why didn't I sleep? Oh well, let me tell you, my friend I really should not listen to people who tell me I should go to a hackathon. JK hackathons are fun, almost as fun as sleep :)"
+        />
 
     <View
         android:layout_width="0dp"
         android:layout_height="10dp"
-        android:layout_weight="2" />
+        android:layout_weight="1"
+        />
 
     <Button
         android:id="@+id/destinationBackButton"
         android:layout_height="wrap_content"
-        android:background="@color/colorAccent"
         android:layout_width="@dimen/buttonwidth"
+        android:layout_gravity="center"
+        android:background="@color/colorAccent"
         android:text="Back"
-        android:onClick="showMainPageFromDestination"
+        android:onClick="showMainPage"
+
         android:textSize="25sp"
         />
-    <Switch
-        android:id="@+id/mySwitch"
-        android:layout_width="@dimen/buttonwidth"
-        android:layout_height="wrap_content"
-        android:text="Play with the Switch"
-        />
-
-
 </LinearLayout>

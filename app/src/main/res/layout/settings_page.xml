@@ -50,10 +50,11 @@
         />
 
     <Switch
-        android:id="@+id/distswitch"
+        android:id="@+id/colorlocationsettingsswitch"
         android:layout_width="@dimen/buttonwidth"
         android:layout_height="wrap_content"
-        android:text="Show distance from destination"
+        android:textColor="@color/colorTextIcons"
+        android:text="Backgroud gets brighter as you approach your destination"
         />
 
     <View
@@ -61,13 +62,43 @@
         android:layout_height="10dp"
         android:layout_weight="1"
         />
+
+    <Switch
+        android:id="@+id/showdistancesettingsswitch"
+        android:layout_width="@dimen/buttonwidth"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorTextIcons"
+        android:text="Show the distance from my destination"
+        />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="10dp"
+        android:layout_weight="1"
+        />
+
+    <Switch
+        android:id="@+id/showmylocationsettingsswitch"
+        android:layout_width="@dimen/buttonwidth"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorTextIcons"
+        android:text="Show me my location"
+        />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="10dp"
+        android:layout_weight="1"
+        />
+
     <Spinner
         android:id="@+id/spinner"
         android:layout_height="wrap_content"
+        android:textColor="@color/colorTextIcons"
         android:layout_width="@dimen/buttonwidth"
-        android:background="@color/colorPrimary"
         android:dropDownWidth="50dp"
         android:spinnerMode="dropdown"
+        android:background="@color/colorAccent"
         android:entries="@array/seconds"
         android:prompt="@string/spinprompt"
         />
@@ -77,13 +108,13 @@
         android:layout_weight="2" />
 
     <Button
-        android:id="@+id/destinationBackButton"
+
+        android:id="@+id/compassBackButton"
         android:layout_height="wrap_content"
-        android:layout_width="@dimen/buttonwidth"
+        android:layout_width="wrap_content"
         android:background="@color/colorAccent"
-        android:textColor="@color/colorTextIcons"
         android:text="Back"
-        android:onClick="showMainPageFromSettings"
+        android:onClick="showMainPageAndAddSettings"
         android:textSize="25sp"
         />
 
