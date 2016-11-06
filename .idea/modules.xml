@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/CompassProject.iml" filepath="$PROJECT_DIR$/CompassProject.iml" />
+      <module fileurl="file://$PROJECT_DIR$/GitDirection.iml" filepath="$PROJECT_DIR$/GitDirection.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

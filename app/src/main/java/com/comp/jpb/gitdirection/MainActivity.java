@@ -110,14 +110,21 @@ public class MainActivity
                 float orientation[] = new float[3];
                 sensorManager.getOrientation(O, orientation);
                 azimuthValue = orientation[0];
-                azimuthValue *= 180;
-                azimuthValue /= Math.PI;
+                if(azimuthValue >= 0 && azimuthValue <= Math.PI) {
+                    azimuthValue *= 180;
+                    azimuthValue /= Math.PI;
+                } else if(azimuthValue < 0 && azimuthValue > -Math.PI){
+                    azimuthValue *= 180;
+                    azimuthValue /= Math.PI;
+                    azimuthValue+=360;
+                }
+                azimuthValue = Math.round(azimuthValue);
             }
         }
 
         String azimuthString;
         if (azimuthValue != 9001){
-            azimuthString = Float.toString(azimuthValue);
+            azimuthString = Integer.toString((int)azimuthValue);
         }else{
             azimuthString = "Azimuth not gotten :(";
         }
@@ -264,7 +271,7 @@ public class MainActivity
         azimuthText = (TextView) findViewById(R.id.azimuth_text);
         String azimuthString;
         if (azimuthValue != 9001){
-           azimuthString = Float.toString(azimuthValue);
+           azimuthString = Integer.toString((int)azimuthValue);
         }else{
             azimuthString = "Azimuth not gotten :(";
         }
