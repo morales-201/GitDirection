@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <integer-array name="seconds">
+        <item>1</item>
+        <item>3</item>
+        <item>10</item>
+        <item>20</item>
+        <item>40</item>
+        <item>90</item>
+    </integer-array>
 </resources>
