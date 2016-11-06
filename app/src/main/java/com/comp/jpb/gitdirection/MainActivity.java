@@ -1,6 +1,11 @@
 package com.comp.jpb.gitdirection;
 
+import android.content.Context;
 import android.content.pm.PackageManager;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
+import android.hardware.Sensor;
 import android.location.Location;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -34,17 +39,23 @@ import android.Manifest.permission;
 
 public class MainActivity
         extends AppCompatActivity
-        implements ConnectionCallbacks, OnConnectionFailedListener, LocationListener
+        implements ConnectionCallbacks, OnConnectionFailedListener, LocationListener, SensorEventListener
 {
 
     private GoogleApiClient ApiClient;
     private LocationRequest locReq;
     private boolean updatingLocation = false;
-
     private Location lastLocation;
-
     private TextView coords;
 
+
+    private SensorManager sensorManager;
+    private Sensor accelerometer;
+    private Sensor magnetometer;
+    float[] gravity;
+    float[] magnetic;
+    private float azimuthValue = 9001;
+    private TextView azimuthText;
 
     //time in ms for compass to update
     private int updateTime = 3000;
@@ -66,6 +77,56 @@ public class MainActivity
         getLocationPermission();
         buildGoogleApiClient();
         createLocationRequest();
+
+        buildSensorManager();
+    }
+
+    private void buildSensorManager(){
+        sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        magnetometer = sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
+    }
+
+    private void startSensorUpdates(){
+        sensorManager.registerListener(this, accelerometer, SensorManager.SENSOR_DELAY_UI);
+        sensorManager.registerListener(this, magnetometer, SensorManager.SENSOR_DELAY_UI);
+    }
+
+    private void stopSensorUpdates(){
+        sensorManager.unregisterListener(this);
+    }
+
+
+    public void onSensorChanged(SensorEvent event) {
+        if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER)
+            gravity = event.values;
+        if (event.sensor.getType() == Sensor.TYPE_MAGNETIC_FIELD)
+            magnetic = event.values;
+        if (gravity != null && magnetic != null) {
+            float O[] = new float[9];
+
+            boolean success = SensorManager.getRotationMatrix(O, null, gravity, magnetic);
+            if (success) {
+                float orientation[] = new float[3];
+                sensorManager.getOrientation(O, orientation);
+                azimuthValue = orientation[0];
+                azimuthValue *= 180;
+                azimuthValue /= Math.PI;
+            }
+        }
+
+        String azimuthString;
+        if (azimuthValue != 9001){
+            azimuthString = Float.toString(azimuthValue);
+        }else{
+            azimuthString = "Azimuth not gotten :(";
+        }
+        azimuthText.setText(azimuthString);
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int accuracy){
+
     }
 
     private void createLocationRequest(){
@@ -105,13 +166,14 @@ public class MainActivity
     public void onLocationChanged(Location location){
         lastLocation = location;
 
-        if (lastLocation != null) {
-            coords.setText(String.format("Latitude: %f \n Longitude: %f",
-                    lastLocation.getLatitude(), lastLocation.getLongitude()));
+        String coordsString;
+        if (lastLocation != null){
+            coordsString = String.format("Latitude: %f \n Longitude: %f",
+                    lastLocation.getLatitude(), lastLocation.getLongitude());
+        } else{
+            coordsString = "Location not Gotten :(";
         }
-        else {
-            coords.setText("Location not Gotten :(");
-        }
+        coords.setText(coordsString);
     }
 
 
@@ -126,6 +188,8 @@ public class MainActivity
         if(updatingLocation){
             stopLocationUpdates();
         }
+
+
     }
 
     @Override
@@ -135,12 +199,15 @@ public class MainActivity
         if (ApiClient.isConnected() && !updatingLocation){
             startLocationUpdates();
         }
+
+
     }
 
     @Override
     protected void onPause() {
         super.onPause();
         stopLocationUpdates();
+        //stopSensorUpdates();
     }
 
     @Override
@@ -149,6 +216,7 @@ public class MainActivity
         if (ApiClient.isConnected() && !updatingLocation){
             startLocationUpdates();
         }
+        //startLocationUpdates();
     }
 
     @Override
@@ -181,17 +249,32 @@ public class MainActivity
         startLocationUpdates();
 
         coords = (TextView) findViewById(R.id.compass_text);
+        String coordsString;
         if (lastLocation != null){
-            coords.setText(String.format("Latitude: %f \n Longitude: %f",
-                    lastLocation.getLatitude(), lastLocation.getLongitude()));}
-        else{
-            coords.setText("Location not Gotten :(");
+            coordsString = String.format("Latitude: %f \n Longitude: %f",
+                    lastLocation.getLatitude(), lastLocation.getLongitude());
+        } else{
+            coordsString = "Location not Gotten :(";
         }
+        coords.setText(coordsString);
+        
+        
+        startSensorUpdates();
+
+        azimuthText = (TextView) findViewById(R.id.azimuth_text);
+        String azimuthString;
+        if (azimuthValue != 9001){
+           azimuthString = Float.toString(azimuthValue);
+        }else{
+            azimuthString = "Azimuth not gotten :(";
+        }
+        azimuthText.setText(azimuthString);
     }
 
-    public void showMainPageAndStopLocationUpdates(View view){
+    public void showMainPageAndStopLocationUpdatesAndSensorUpdates(View view){
         setContentView(R.layout.activity_main);
         stopLocationUpdates();
+        stopSensorUpdates();
     }
 
 }
