@@ -2,11 +2,11 @@
 
 <LinearLayout
 
+    style="@style/AppTheme"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     android:orientation="vertical"
     android:gravity="center"
     android:paddingBottom="100dp"
@@ -26,6 +26,7 @@
         android:id="@+id/compassButton"
         android:layout_height="wrap_content"
         android:layout_width="@dimen/buttonwidth"
+        android:background="@color/colorAccent"
         android:text="Compass"
         android:onClick="showCompass"
         android:textSize="25sp"
@@ -39,6 +40,7 @@
         android:id="@+id/destinationButton"
         android:layout_height="wrap_content"
         android:layout_width="@dimen/buttonwidth"
+        android:background="@color/colorAccent"
         android:text="Connect"
         android:onClick="showDestination"
         android:textSize="25sp"
@@ -51,6 +53,7 @@
         android:id="@+id/settingsButton"
         android:layout_height="wrap_content"
         android:layout_width="@dimen/buttonwidth"
+        android:background="@color/colorAccent"
         android:text="Settings"
         android:onClick="showSettings"
         android:textSize="25sp"
@@ -63,6 +66,7 @@
         android:id="@+id/instuctionsButton"
         android:layout_height="wrap_content"
         android:layout_width="@dimen/buttonwidth"
+        android:background="@color/colorAccent"
         android:text="Instructions"
         android:onClick="showInstructions"
         android:textSize="25sp"

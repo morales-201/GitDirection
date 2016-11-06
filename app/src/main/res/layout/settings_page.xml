@@ -22,10 +22,11 @@
         android:layout_weight="1" />
 
     <Switch
-        android:id="@+id/settingsswitch"
+        android:id="@+id/colorlocationsettingsswitch"
         android:layout_width="@dimen/buttonwidth"
         android:layout_height="wrap_content"
-        android:text="Play with the Switch"
+        android:textColor="@color/colorTextIcons"
+        android:text="Backgroud gets brighter as you approach your destination"
         />
 
     <View
@@ -33,11 +34,41 @@
         android:layout_height="10dp"
         android:layout_weight="1"
         />
+
+    <Switch
+        android:id="@+id/showdistancesettingsswitch"
+        android:layout_width="@dimen/buttonwidth"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorTextIcons"
+        android:text="Show the distance from my destination"
+        />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="10dp"
+        android:layout_weight="1"
+        />
+
+    <Switch
+        android:id="@+id/showmylocationsettingsswitch"
+        android:layout_width="@dimen/buttonwidth"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorTextIcons"
+        android:text="Show me my location"
+        />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="10dp"
+        android:layout_weight="1"
+        />
+
     <Spinner
         android:id="@+id/spinner"
         android:layout_height="wrap_content"
+        android:textColor="@color/colorTextIcons"
         android:layout_width="@dimen/buttonwidth"
-        android:background="@color/colorPrimaryDark"
+        android:background="@color/colorAccent"
         android:entries="@array/seconds"
         android:prompt="@string/spinprompt"
         />
